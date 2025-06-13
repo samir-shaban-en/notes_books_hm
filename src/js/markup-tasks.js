@@ -1,11 +1,11 @@
-import { getLocalStorageItem } from './local-storage-api';
+import { getLocalStorageItem, TASKSKEYNAME } from './local-storage-api';
+import refs from './refs';
 
-export function createMrkup() {
-  const tasksArray = getLocalStorageItem();
+function createMarkup() {
+  const tasksArray = getLocalStorageItem(TASKSKEYNAME);
   if (!tasksArray) {
     return;
   }
-
   return tasksArray
     .map(
       ({ title, description, id }) => `<li data-id = '${id}'
@@ -18,3 +18,13 @@ export function createMrkup() {
     )
     .join('');
 }
+
+export default function renderMarkup() {
+  if (!createMarkup()) {
+    return;
+  }
+  refs.taskList.innerHTML = '';
+  refs.taskList.insertAdjacentHTML('beforeend', createMarkup());
+}
+
+renderMarkup();

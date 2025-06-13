@@ -1,6 +1,7 @@
-import './js/local-storage-api';
-import './js/markup-tasks';
+import refs from './js/refs';
+import { formSubmitHandler, onBtnDeleteClick } from './js/render-tasks';
+import { onThemeBtnClick } from './js/theme-switcher';
 
-import './js/render-tasks';
-import './js/tasks';
-import './js/theme-switcher';
+refs.form.addEventListener('submit', formSubmitHandler);
+refs.taskList.addEventListener('click', onBtnDeleteClick);
+refs.themeBtn.addEventListener('click', onThemeBtnClick);

@@ -53,16 +53,16 @@ body {
 }
 
 /* Основна світла тема */
-body.theme-light {
+body {
   background-color: #f0f0f0;
   color: #333;
 }
 
-body.theme-light .header {
+body .header {
   background-image: linear-gradient(270deg, #ffcc00, #ff9900, #ff6600);
 }
 
-body.theme-light .task-list-item {
+body .task-list-item {
   background-color: #fff8e1;
   color: #333;
   border: 1px solid #ffcc00;
@@ -103,7 +103,7 @@ body.theme-dark .theme-toggle-button {
   color: white;
 }
 
-body.theme-light .theme-toggle-button {
+body .theme-toggle-button {
   background: linear-gradient(45deg, #ffcc00, #ff9900);
   color: #333;
 }

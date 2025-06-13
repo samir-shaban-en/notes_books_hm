@@ -1,8 +1,13 @@
-export const KEYNAME = 'key';
-export function setLocalStorageItem(tasks) {
-  localStorage.setItem(KEYNAME, JSON.stringify(tasks));
+export const TASKSKEYNAME = 'tasks';
+export const THEMEKEYNAME = 'themeDark';
+
+export function setLocalStorageItem(KEYNAME, value) {
+  localStorage.setItem(KEYNAME, JSON.stringify(value));
 }
 
-export function getLocalStorageItem() {
+export function getLocalStorageItem(KEYNAME) {
   return JSON.parse(localStorage.getItem(KEYNAME));
+}
+export function removeLocalStorageItem(KEYNAME) {
+  localStorage.removeItem(KEYNAME);
 }

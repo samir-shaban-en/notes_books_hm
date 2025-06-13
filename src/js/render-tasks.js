@@ -1,12 +1,45 @@
-import ref from './refs';
-import { createMrkup } from './markup-tasks';
+import {
+  getLocalStorageItem,
+  setLocalStorageItem,
+  TASKSKEYNAME,
+} from './local-storage-api';
 
-export function renderMarkup() {
-  if (!createMrkup()) {
+import renderMarkup from './markup-tasks';
+
+let task = [];
+
+export function formSubmitHandler(e) {
+  e.preventDefault();
+
+  const title = e.currentTarget.taskName.value;
+  const description = e.currentTarget.taskDescription.value;
+  const id = Math.floor(Math.random() * 100);
+
+  if (title === '' || description === '') {
     return;
   }
-  ref.taskList.innerHTML = '';
-  ref.taskList.insertAdjacentHTML('beforeend', createMrkup());
+
+  task.push({ title, description, id });
+
+  setLocalStorageItem(TASKSKEYNAME, task);
+
+  renderMarkup();
+
+  e.currentTarget.reset();
 }
 
-renderMarkup();
+export function onBtnDeleteClick(e) {
+  if (e.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  const currentNote = e.target.closest('.task-list-item');
+
+  currentNote.remove();
+
+  const filtered = getLocalStorageItem(TASKSKEYNAME).filter(
+    item => item.id !== +currentNote.dataset.id
+  );
+
+  setLocalStorageItem(TASKSKEYNAME, filtered);
+  task = filtered;
+}
