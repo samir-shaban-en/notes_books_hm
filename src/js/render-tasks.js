@@ -6,11 +6,9 @@ import {
 
 import renderMarkup from './markup-tasks';
 
-let task = [];
-
 export function formSubmitHandler(e) {
   e.preventDefault();
-
+  const task = getLocalStorageItem(TASKSKEYNAME) ?? [];
   const title = e.currentTarget.taskName.value;
   const description = e.currentTarget.taskDescription.value;
   const id = Math.floor(Math.random() * 100);
@@ -41,5 +39,4 @@ export function onBtnDeleteClick(e) {
   );
 
   setLocalStorageItem(TASKSKEYNAME, filtered);
-  task = filtered;
 }
